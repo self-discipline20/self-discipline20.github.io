@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小学生选择题</title>
+    <style>
+        body{
+            background-color: #AEDD81;
+        }
+        .divCss{
+            height: 700px;
+            width: 500px;
+            position: relative;
+            margin-top: 10px;
+            margin-left: 480px;
+            border: 10px green solid;
+            background-color: #D0D0D0;
+        }
+        h1{
+            text-align: center;
+        }
+        .olCss{
+            padding-left: 20px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+	        margin-left: 40px;
+
+        }
+        .in{
+            float:left;
+	        margin-left: -50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="divCss">
+        <h1>小学生20以内选择题</h1>
+        <p>第一题：<b>3+4=</b></p>
+        <ol type="A" start="" class="olCss" name="single">
+            <input class="in" type="radio" name="place1" value="A"><li>7</li>
+            <input class="in" type="radio" name="place1" value="B"><li>4</li>
+            <input class="in" type="radio" name="place1" value="C"><li>1</li>
+        </ol>
+        <br>
+        <input type="button" value="提交答案" onclick="sendMsg1()">
+        <p>第二题：<b>5+8=</b></p>
+        <ol type="A" start="" class="olCss" name="single">
+            <input class="in" type="radio" name="place2" value="A"><li>9</li>
+            <input class="in" type="radio" name="place2" value="B"><li>13</li>
+            <input class="in" type="radio" name="place2" value="C"><li>4</li>
+        </ol>
+        <br>
+        <input type="button" value="提交答案" onclick="sendMsg2()">
+        <p>第三题：<b>16-7=</b></p>
+        <ol type="A" start="" class="olCss" name="single">
+            <input class="in" type="radio" name="place3" value="A"><li>8</li>
+            <input class="in" type="radio" name="place3" value="B"><li>5</li>
+            <input class="in" type="radio" name="place3" value="C"><li>9</li>
+        </ol>
+        <br>
+        <input type="button" value="提交答案" onclick="sendMsg3()">
+    </div>
+    <script>
+        function sendMsg1(){
+            var p1 = document.getElementsByName("place1");
+            if(p1[0].checked==true){
+                alert("回答正确");
+            }else{
+                alert("回答错误");
+            }
+        }
+        function sendMsg2(){
+            var p2 = document.getElementsByName("place2");
+            if(p2[1].checked==true){
+                alert("回答正确");
+            }else{
+                alert("回答错误");
+            }
+        }
+        function sendMsg3(){
+            var p3 = document.getElementsByName("place3");
+            if(p3[2].checked==true){
+                alert("回答正确");
+            }else{
+                alert("回答错误");
+            }
+        }
+    </script>
+</body>
+</html>
