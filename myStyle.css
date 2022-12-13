@@ -9,9 +9,8 @@ body{
     padding: 1px;
     background: #1abc9c;
     color: white;
-}
-.header pre{
-    font-size: 40px;
+    font-size: 60px;
+    text-align: center;
     font-family: STKaiti;
 }
 .navbar{
