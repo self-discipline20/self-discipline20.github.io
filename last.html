@@ -1,0 +1,123 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title> 期末考试 </title> 
+    <style type="text/css"> 
+    body{ 	
+         margin: 0 ; 
+         /* 手型光标 */
+         cursor: pointer;
+         background-color: aquamarine;
+         } 	
+    div{ 	
+        background-color:pink; 	
+        box-sizing: border-box ; 	
+        border:1px solid rgb(100,100,200) ; 
+        /* border-radius: 20px;	  */
+        border-radius: 50% ; 	
+        margin: 0 ; 	 
+        padding: 0 ;
+        /* margin-left: 400px; 	  */
+        position: absolute ; 
+        transition: all 0.5s ; 	
+        } 
+    div.bd{ 
+        background-color:pink; 	
+        border:0px solid ; 	
+        border-radius: 0% ; 
+        } 
+    div p{ 
+        margin: auto; 
+        padding: 10%; 
+        color:white; 
+        text-align:center; 
+        text-shadow:1px 1px rgb(0, 37, 100); 
+        } 	 
+    </style> 
+</head> 
+<body> 
+    <script type="text/javascript"> 
+        const NUMS = 8 ; 
+        var tsBalls = [] ; 
+        var sn = 0 ; 
+        const S = ['20203004，计科1班龙翔。春江潮水连海平，海上明月共潮生。滟滟随波千万里，何处春江无月明！江流宛转绕芳甸，月照花林皆似霰；空里流霜不觉飞，汀上白沙看不见。江天一色无纤尘，皎皎空中孤月轮。江畔何人初见月？江月何年初照人？人生代代无穷已，江月年年望相似。不知江月待何人，但见长江送流水。白云一片去悠悠，青枫浦上不胜愁。谁家今夜扁舟子？何处相思明月楼？可怜楼上月裴回，应照离人妆镜台。玉户帘中卷不去，捣衣砧上拂还来。此时相望不相闻，愿逐月华流照君。鸿雁长飞光不度，鱼龙潜跃水成文。昨夜闲潭梦落花，可怜春半不还家。江水流春去欲尽，江潭落月复西斜。斜月沉沉藏海雾，碣石潇湘无限路。不知乘月几人归，落月摇情满江树。'] ; 
+        document.body.onmousemove = document.body.ontouchmove = function(){
+            for(let ball of tsBalls){ 
+                ball.setPositionDiv() ; 
+            } 
+        }; 
+        document.body.onclick = function(){ 
+            for(let ball of tsBalls){ 
+                ball.randPositionDiv() ; 
+            } 
+        }; 
+        document.body.ondblclick = function(){ 
+            console.log('double click'); 
+            for(let ball of tsBalls){ 
+                this.removeChild(ball.dom) ; 
+            } 
+            tsBalls = [] ; 
+            sn === S.length -1 ? sn = 0 : sn++ ; 
+            for(var i=0 ;i < S[sn].length ; i++){ 
+                var x0 = i % NUMS ;
+                var y0 = Math.floor ( i / NUMS ) ; 
+                var ballObj = new Ball( x0 , y0 ) ; 
+                ballObj.createDivDom(S[sn][i]) ; 
+                ballObj.randPositionDiv() ; 
+                tsBalls.push(ballObj) ; 
+            } 
+        }; 
+        var bodyWidth = window.innerWidth ; 
+        var bodyHeight = window.innerHeight ; 
+        document.body.style.width = bodyWidth + 'px';
+        document.body.style.height = bodyHeight + 'px' ; 
+        var r = bodyWidth > bodyHeight ? bodyHeight / (NUMS*3/2) : bodyWidth / (NUMS*3/2) ; 
+        for(var i=0 ;i < S[sn].length ; i++){ 
+            var x0 = i % NUMS ; 
+            var y0 = Math.floor ( i / NUMS ) ; 
+            var ballObj = new Ball( x0 , y0 ) ; 
+            ballObj.createDivDom(S[sn][i]) ; 
+            ballObj.randPositionDiv() ; 
+            tsBalls.push(ballObj) ; 
+        } 
+        function Ball(x0 , y0){ 
+            this.x0 = x0 ; 
+            this.y0 = y0 ; 
+            this.dom = null ; 
+            this.createDivDom = function(s){
+                var divDom = document.createElement('div') ; 
+                var pDom = document.createElement('p') ; 
+                pDom.textContent = s ; 
+                pDom.style.fontSize = r/2 + 'px' ; 
+                divDom.style.width = divDom.style.height = r + 'px' ; 
+                if(this.x0 === 7 || this.x0 === 11){ 
+                    divDom.className = 'bd' ; 
+                }
+                divDom.appendChild(pDom) ; 
+                document.body.appendChild(divDom) ;
+                this.dom = divDom ; 
+            }; 
+            this.randPositionDiv = function(){ 
+                var x = Math.floor(Math.random() * bodyWidth ) ;
+                if(x >= bodyWidth - r){
+                    x = bodyWidth - r ;
+                } 
+                var y = Math.floor( Math.random() * bodyHeight ); 
+                if(y >= bodyHeight - r){ 
+                    y = bodyHeight - r ;
+                } 
+                this.dom.style.left = x + 'px' ; 
+                this.dom.style.top = y + 'px' ; 
+            };
+            this.setPositionDiv = function(){ 
+                var x = parseInt(this.x0) * r * 1.2 ; 
+                var y = parseInt(this.y0) * r * 1.2 ; 
+                this.dom.style.left = x + r + 'px' ; 
+                this.dom.style.top = y + r + 'px' ; 
+            } ; 
+        }; 
+</script> 
+</body> 
+</html>
+
